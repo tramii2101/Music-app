@@ -1,6 +1,7 @@
 package com.example.musicapp.ui.authen
 
 import android.app.ProgressDialog
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
@@ -22,6 +23,10 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
 
     val viewModel by lazy {
         ViewModelProvider(this)[RegisterViewModel::class.java]
+    }
+
+    private val sharedPreferences by lazy {
+        requireActivity().getSharedPreferences("AUTHENTICATION", Context.MODE_PRIVATE)
     }
 
     override fun inflateLayout(
@@ -50,7 +55,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
         }
 
         binding.back.setOnClickListener {
-
+            requireActivity().supportFragmentManager.popBackStack()
         }
 
         binding.btnSignUp.setOnClickListener {
@@ -63,17 +68,18 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
             if (validateInput()) {
                 val progressDialog =
                     ProgressDialog.show(context, null, "Registering, please wait...", true)
+                progressDialog.setCanceledOnTouchOutside(true)
                 viewModel.register(fullname, username, email, password, passwordAgain)
                 viewModel.loading.observe(this) {
-                    if (!it) {  // it = viewModel.loading
+                    if (!it) {// it = viewModel.loading
+                        progressDialog.dismiss()
                         if (viewModel.status.value in 200..299) {
-                            progressDialog.dismiss()
                             Toast.makeText(requireContext(), viewModel.message, Toast.LENGTH_SHORT)
                                 .show()
                             requireActivity().supportFragmentManager.beginTransaction()
                                 .replace(R.id.frame_authen, LoginFragment()).commit()
                         } else {
-                            progressDialog.dismiss()
+
                             Toast.makeText(requireContext(), viewModel.message, Toast.LENGTH_SHORT)
                                 .show()
                         }
@@ -102,8 +108,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
             binding.edtConfirmPassword.error = "Password is incorrect"
             err++
         }
-        if (err > 0) return false
-        return true
+        return err <= 0
     }
 
 

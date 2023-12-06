@@ -61,7 +61,7 @@
             android:hint=" Password"
             android:inputType="textPassword"
             android:singleLine="true"
-            android:text="Ahihi123" />
+            android:text="Ahihi123@" />
 
         <CheckBox
             android:id="@+id/checkbox_visibility"
