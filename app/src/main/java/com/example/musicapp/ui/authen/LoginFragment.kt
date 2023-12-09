@@ -3,17 +3,17 @@ package com.example.musicapp.ui.authen
 import android.app.ProgressDialog
 import android.content.ContentValues.TAG
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.musicapp.R
 import com.example.musicapp.base.BaseFragment
 import com.example.musicapp.databinding.FragmentLoginBinding
-import com.example.musicapp.utils.common.Screen
+import com.example.musicapp.ui.play.PlayActivity
 import com.example.musicapp.utils.extensions.showHidePassword
 import com.example.musicapp.viewmodel.LoginViewModel
 
@@ -22,8 +22,9 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
         ViewModelProvider(this)[LoginViewModel::class.java]
     }
     private val sharedPreferences by lazy {
-        requireActivity().getSharedPreferences("AUTHENTICATION", Context.MODE_PRIVATE)
+        requireActivity().getSharedPreferences("my_preferences", Context.MODE_PRIVATE)
     }
+
     lateinit var username: String
     lateinit var password: String
 
@@ -72,10 +73,14 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                             .putString("accessToken", "Bear ${viewModel.accessToken}").apply()
                         Toast.makeText(requireContext(), viewModel.accessToken, Toast.LENGTH_SHORT)
                             .show()
+                        Log.e(TAG, viewModel.accessToken)
+
                         if (binding.checkboxRemember.isChecked) {
                             sharedPreferences.edit().putString("username", username).apply()
                             sharedPreferences.edit().putString("password", password).apply()
                         }
+                        val intent = Intent(requireContext(), PlayActivity::class.java)
+                        startActivity(intent)
                     } else {
                         Toast.makeText(
                             requireContext(),
