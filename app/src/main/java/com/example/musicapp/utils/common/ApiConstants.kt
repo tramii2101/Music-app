@@ -13,5 +13,7 @@ object ApiConstants {
     const val VERIFY_OTP = "/api/auth/verify-otp"
     const val RESET_PASSWORD = "/api/auth/reset-password"
 
+    // Music API
+    const val GET_SONG_BY_ID = "/api/musics/{ID}"
 
 }
