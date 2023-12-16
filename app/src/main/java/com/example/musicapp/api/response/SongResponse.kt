@@ -19,7 +19,7 @@ data class SongData(
     @SerializedName("year"        ) val year        : Int,
     @SerializedName("length"      ) val length      : Int,
     @SerializedName("playCount"   ) var playCount   : Int = 0,
-    @SerializedName("category"    ) var category    : Category,
+    @SerializedName("category"    ) val category    : Category,
     @SerializedName("id"          ) val id          : String
 )
 data class SingerOfSong(

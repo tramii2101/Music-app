@@ -2,6 +2,9 @@ package com.example.musicapp.api
 
 import com.example.musicapp.api.request.LoginRequest
 import com.example.musicapp.api.request.RegisterRequest
+import com.example.musicapp.api.response.ListCategoriesResponse
+import com.example.musicapp.api.response.ListSingerResponse
+import com.example.musicapp.api.response.ListSongHomeResponse
 import com.example.musicapp.api.response.LoginResponse
 import com.example.musicapp.api.response.RegisterResponse
 import com.example.musicapp.api.response.SongResponse
@@ -27,8 +30,19 @@ interface ApiService {
 
     @GET(ApiConstants.GET_SONG_BY_ID)
     fun getSongById(
-        @Header("Authorization") accessToken: String,
-        @Path("ID") id: String
+        @Header("Authorization") accessToken: String, @Path("ID") id: String
     ): Call<SongResponse>
+
+    @GET(ApiConstants.GET_LIST_CATEGORIES)
+    fun getListCategories(@Header("Authorization") accessToken: String): Call<ListCategoriesResponse>
+
+    @GET(ApiConstants.GET_LIST_SINGER)
+    fun getListSingers(@Header("Authorization") accessToken: String) : Call<ListSingerResponse>
+
+    @GET(ApiConstants.GET_LIST_SONG)
+    fun getListSong(@Header ("Authorization") accessToken: String) : Call<ListSongHomeResponse>
+
+
+
 
 }
