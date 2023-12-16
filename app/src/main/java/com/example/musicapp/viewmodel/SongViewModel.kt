@@ -5,7 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.musicapp.api.ApiHelper
+import com.example.musicapp.api.response.ListSongBySingerResponse
 import com.example.musicapp.api.response.ListSongHomeResponse
+import com.example.musicapp.api.response.MusicBySingerData
 import com.example.musicapp.api.response.ResultSongAtHome
 import com.example.musicapp.api.response.SongData
 import com.example.musicapp.api.response.SongResponse
@@ -20,6 +22,7 @@ class SongViewModel : ViewModel() {
     var message = ""
     var song: SongData? = null
     var listSongAtHome = mutableListOf<ResultSongAtHome>()
+    var listSongBySinger = mutableListOf<MusicBySingerData>()
 
     private val _loading = MutableLiveData(/* value = */ true)
     val loading: LiveData<Boolean>
@@ -86,6 +89,41 @@ class SongViewModel : ViewModel() {
                 )
 
             } catch (ex: HttpException) {
+                message = ex.response()?.errorBody()?.string()
+                    ?.let { JSONObject(it).getString("message") }.toString()
+                _loading.value = false
+            }
+        }
+    }
+
+    fun getListSongBySinger(accessToken: String, singerId: String) {
+        viewModelScope.launch {
+            try {
+                ApiHelper.getInstance().getSongBySinger(accessToken, singerId).enqueue(
+                    object : Callback<ListSongBySingerResponse> {
+                        override fun onResponse(
+                            call: Call<ListSongBySingerResponse>,
+                            response: Response<ListSongBySingerResponse>
+                        ) {
+                            if (response.isSuccessful && response.body() != null) {
+                                listSongBySinger = response.body()!!.data!!.musics
+                                _loading.value = false
+                            } else {
+                                message =
+                                    JSONObject(response.errorBody()!!.string()).getString("message")
+                                _loading.value = false
+                            }
+                         }
+
+                        override fun onFailure(call: Call<ListSongBySingerResponse>, t: Throwable) {
+                            message = "Oops! Something went wrong..."
+                            _loading.value = false
+                        }
+
+                    }
+                )
+
+            }catch (ex: HttpException) {
                 message = ex.response()?.errorBody()?.string()
                     ?.let { JSONObject(it).getString("message") }.toString()
                 _loading.value = false

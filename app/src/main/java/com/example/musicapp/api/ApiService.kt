@@ -4,9 +4,11 @@ import com.example.musicapp.api.request.LoginRequest
 import com.example.musicapp.api.request.RegisterRequest
 import com.example.musicapp.api.response.ListCategoriesResponse
 import com.example.musicapp.api.response.ListSingerResponse
+import com.example.musicapp.api.response.ListSongBySingerResponse
 import com.example.musicapp.api.response.ListSongHomeResponse
 import com.example.musicapp.api.response.LoginResponse
 import com.example.musicapp.api.response.RegisterResponse
+import com.example.musicapp.api.response.SingerDetailResponse
 import com.example.musicapp.api.response.SongResponse
 import com.example.musicapp.model.User
 import com.example.musicapp.utils.common.ApiConstants
@@ -37,12 +39,22 @@ interface ApiService {
     fun getListCategories(@Header("Authorization") accessToken: String): Call<ListCategoriesResponse>
 
     @GET(ApiConstants.GET_LIST_SINGER)
-    fun getListSingers(@Header("Authorization") accessToken: String) : Call<ListSingerResponse>
+    fun getListSingers(@Header("Authorization") accessToken: String): Call<ListSingerResponse>
 
     @GET(ApiConstants.GET_LIST_SONG)
-    fun getListSong(@Header ("Authorization") accessToken: String) : Call<ListSongHomeResponse>
+    fun getListSong(@Header("Authorization") accessToken: String): Call<ListSongHomeResponse>
 
+    @GET(ApiConstants.GET_SINGER_BY_ID)
+    fun getSingerById(
+        @Header("Authorization") accessToken: String,
+        @Path("singerId") singerId: String
+    ): Call<SingerDetailResponse>
 
+    @GET(ApiConstants.GET_SONG_BY_SINGER_ID)
+    fun getSongBySinger(
+        @Header("Authorization") accessToken: String,
+        @Path("singerId") singerId: String
+    ): Call<ListSongBySingerResponse>
 
 
 }

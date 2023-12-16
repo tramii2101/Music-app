@@ -18,5 +18,9 @@ object ApiConstants {
     const val GET_LIST_SONG = "/api/musics"
     const val GET_LIST_CATEGORIES = "/api/categories"
     const val GET_LIST_SINGER = "/api/singers"
+    const val GET_SINGER_BY_ID = "/api/singers/{ID}"
+    const val GET_SONG_BY_SINGER_ID = "/api/musics/singer/{singerId}"
+    const val GET_SONG_IN_CATEGORY = "/api/musics/category/{categoryId}"
+
 
 }
