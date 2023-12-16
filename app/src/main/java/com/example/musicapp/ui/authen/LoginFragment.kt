@@ -13,7 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.musicapp.R
 import com.example.musicapp.base.BaseFragment
 import com.example.musicapp.databinding.FragmentLoginBinding
-import com.example.musicapp.ui.play.PlayActivity
+import com.example.musicapp.ui.MainActivity
 import com.example.musicapp.utils.extensions.showHidePassword
 import com.example.musicapp.viewmodel.LoginViewModel
 
@@ -70,16 +70,14 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                     progressDialog.dismiss()
                     if (viewModel.accessToken != "") {
                         sharedPreferences.edit()
-                            .putString("accessToken", "Bear ${viewModel.accessToken}").apply()
-                        Toast.makeText(requireContext(), viewModel.accessToken, Toast.LENGTH_SHORT)
-                            .show()
+                            .putString("accessToken", viewModel.accessToken).apply()
                         Log.e(TAG, viewModel.accessToken)
 
                         if (binding.checkboxRemember.isChecked) {
                             sharedPreferences.edit().putString("username", username).apply()
                             sharedPreferences.edit().putString("password", password).apply()
                         }
-                        val intent = Intent(requireContext(), PlayActivity::class.java)
+                        val intent = Intent(requireContext(), MainActivity::class.java)
                         startActivity(intent)
                     } else {
                         Toast.makeText(

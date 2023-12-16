@@ -29,7 +29,7 @@ class PlayActivity : BaseActivity<ActivityPlayBinding>() {
         return ActivityPlayBinding.inflate(layoutInflater)
     }
 
-    val id = "64c502aa62a3e4b829f04e1e"
+    var id = ""
 
     private val mediaPlayer = MediaPlayerCommon.createMediaPlayer()
 
@@ -39,7 +39,8 @@ class PlayActivity : BaseActivity<ActivityPlayBinding>() {
 
     override fun bindData() {
         val accessToken = sharePref.getString("accessToken", "")
-        if (accessToken != null) {
+        id = sharePref.getString("songId", "").toString()
+        if (accessToken != null && id != "") {
             viewModel.getSong(accessToken, id)
         }
         viewModel.loading.observe(this) {
@@ -51,7 +52,7 @@ class PlayActivity : BaseActivity<ActivityPlayBinding>() {
                     binding.seekBar.max = mediaPlayer.duration
                     handler.post(object : Runnable {
                         override fun run() {
-                            val curDuration = mediaPlayer.currentPosition?.toLong()
+                            val curDuration = mediaPlayer.currentPosition.toLong()
                             if (curDuration != null) {
                                 val time = String.format(
                                     "%02d:%02d ",
@@ -62,7 +63,7 @@ class PlayActivity : BaseActivity<ActivityPlayBinding>() {
                                         )
                                     )
                                 )
-                                binding.totalTime.text = timerConversion(mediaPlayer!!.duration)
+                                binding.totalTime.text = timerConversion(mediaPlayer.duration)
                                 binding.currentTime.text = time
                                 binding.seekBar.progress = curDuration.toInt()
                             }
@@ -81,21 +82,19 @@ class PlayActivity : BaseActivity<ActivityPlayBinding>() {
             binding.seekBar.max = it.duration
             handler.post(object : Runnable {
                 override fun run() {
-                    val curDuration = mediaPlayer?.currentPosition?.toLong()
-                    if (curDuration != null) {
-                        val time = String.format(
-                            "%02d:%02d ",
-                            TimeUnit.MILLISECONDS.toMinutes(curDuration),
-                            TimeUnit.MILLISECONDS.toSeconds(curDuration) - TimeUnit.MINUTES.toSeconds(
-                                TimeUnit.MILLISECONDS.toMinutes(
-                                    curDuration
-                                )
+                    val curDuration = mediaPlayer.currentPosition.toLong()
+                    val time = String.format(
+                        "%02d:%02d ",
+                        TimeUnit.MILLISECONDS.toMinutes(curDuration),
+                        TimeUnit.MILLISECONDS.toSeconds(curDuration) - TimeUnit.MINUTES.toSeconds(
+                            TimeUnit.MILLISECONDS.toMinutes(
+                                curDuration
                             )
                         )
-                        binding.totalTime.text = timerConversion(mediaPlayer.duration)
-                        binding.currentTime.text = time
-                        binding.seekBar.progress = curDuration.toInt()
-                    }
+                    )
+                    binding.totalTime.text = timerConversion(mediaPlayer.duration)
+                    binding.currentTime.text = time
+                    binding.seekBar.progress = curDuration.toInt()
 
                     handler.postDelayed(this, 1000)
                 }
@@ -141,12 +140,12 @@ class PlayActivity : BaseActivity<ActivityPlayBinding>() {
 
         binding.replay10.setOnClickListener {
             binding.seekBar.progress = (mediaPlayer.currentPosition).minus(10000)
-            mediaPlayer?.seekTo(binding.seekBar.progress)
+            mediaPlayer.seekTo(binding.seekBar.progress)
         }
 
         binding.forward10.setOnClickListener {
             binding.seekBar.progress = (mediaPlayer.currentPosition).plus(10000)
-            mediaPlayer?.seekTo(binding.seekBar.progress)
+            mediaPlayer.seekTo(binding.seekBar.progress)
         }
     }
 
