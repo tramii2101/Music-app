@@ -5,6 +5,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.musicapp.adapters.SongItemAdapter
 import com.example.musicapp.base.BaseFragment
 import com.example.musicapp.databinding.FragmentSingerDetailBinding
@@ -32,7 +33,7 @@ class SingerDetailFragment : BaseFragment<FragmentSingerDetailBinding>() {
         SingerViewModel()
     }
     lateinit var accessToken: String
-    lateinit var singerId: String
+    var singerId: String = ""
     override fun inflateLayout(
         inflater: LayoutInflater,
         container: ViewGroup?
@@ -41,7 +42,7 @@ class SingerDetailFragment : BaseFragment<FragmentSingerDetailBinding>() {
     }
 
     override fun initView() {
-        accessToken = sharedPreferences.getString("accessToken", "").toString()
+        accessToken = sharedPreferences.getString("accessToken", null).toString()
         singerId = sharedPreferences.getString("singerId", "").toString()
         binding.rcvListSong.setLinearLayoutManager(
             requireContext(),
@@ -52,8 +53,20 @@ class SingerDetailFragment : BaseFragment<FragmentSingerDetailBinding>() {
 
     override fun bindData() {
         singerViewModel.getSingerDetail(accessToken, singerId)
-        songViewModel.getListSongBySinger(accessToken, singerId)
+        singerViewModel.loading.observe(this) {
+            if (!it) {
+                Glide.with(binding.imgAvatar.context).load(singerViewModel.singer.avatar)
+                    .into(binding.imgAvatar)
+                binding.tvFullname.text = singerViewModel.singer.fullname
+            }
+        }
+        songViewModel.getListSongBySinger(accessToken, "")
 
+        songViewModel.loading.observe(this) {
+            if (!it && songViewModel.listSongBySinger.isNullOrEmpty()) {
+                songAdapter.setDataList(songViewModel.listSongBySinger)
+            }
+        }
     }
 
     override fun handleEvent() {

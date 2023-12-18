@@ -4,7 +4,9 @@ import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.musicapp.R
 import com.example.musicapp.adapters.CategoryAdapter
 import com.example.musicapp.adapters.SingerAdapter
 import com.example.musicapp.adapters.SongAdapter
@@ -106,7 +108,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         songAdapter.setOnClickItem { item, position ->
             sharedPreferences.edit().putString("previous_screen", Screen.LOGIN.toString()).apply()
             if (item != null) {
-                sharedPreferences.edit().putString("songId", item.id).apply()
+                sharedPreferences.edit()
+                    .putString("songId", item.id).apply()
             }
             sharedPreferences.edit().putInt("song_position", position).apply()
             val intent = Intent(requireContext(), PlayActivity::class.java)
@@ -119,10 +122,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             }
         }
 
-        singerAdapter.setOnClickItem { item, _ ->
+        singerAdapter.setOnClickItem { item, position ->
+            val singer =singerViewModel.listSinger[position]
             if (item != null) {
-                sharedPreferences.edit().putString("singerId", item.id).apply()
+                val singerId = item.id.toString()
+                sharedPreferences.edit().putString("singerId", singer.id.toString()).apply()
+                findNavController().navigate(R.id.action_homeFragment_to_singerDetailFragment)
             }
+
         }
     }
 

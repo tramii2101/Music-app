@@ -47,7 +47,7 @@ interface ApiService {
     @GET(ApiConstants.GET_SINGER_BY_ID)
     fun getSingerById(
         @Header("Authorization") accessToken: String,
-        @Path("singerId") singerId: String
+        @Path("ID") singerId: String
     ): Call<SingerDetailResponse>
 
     @GET(ApiConstants.GET_SONG_BY_SINGER_ID)

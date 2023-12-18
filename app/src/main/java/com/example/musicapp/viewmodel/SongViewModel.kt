@@ -22,7 +22,7 @@ class SongViewModel : ViewModel() {
     var message = ""
     var song: SongData? = null
     var listSongAtHome = mutableListOf<ResultSongAtHome>()
-    var listSongBySinger = mutableListOf<MusicBySingerData>()
+    var listSongBySinger = arrayListOf<MusicBySingerData>()
 
     private val _loading = MutableLiveData(/* value = */ true)
     val loading: LiveData<Boolean>
@@ -99,7 +99,7 @@ class SongViewModel : ViewModel() {
     fun getListSongBySinger(accessToken: String, singerId: String) {
         viewModelScope.launch {
             try {
-                ApiHelper.getInstance().getSongBySinger(accessToken, singerId).enqueue(
+                ApiHelper.getInstance().getSongBySinger(accessToken, "singerId").enqueue(
                     object : Callback<ListSongBySingerResponse> {
                         override fun onResponse(
                             call: Call<ListSongBySingerResponse>,
