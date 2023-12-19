@@ -52,18 +52,19 @@ class SingerDetailFragment : BaseFragment<FragmentSingerDetailBinding>() {
     }
 
     override fun bindData() {
+        songViewModel.getListSongBySinger(accessToken, singerId)
         singerViewModel.getSingerDetail(accessToken, singerId)
         singerViewModel.loading.observe(this) {
             if (!it) {
                 Glide.with(binding.imgAvatar.context).load(singerViewModel.singer.avatar)
                     .into(binding.imgAvatar)
                 binding.tvFullname.text = singerViewModel.singer.fullname
+                binding.tvDes.text = singerViewModel.singer.description
             }
         }
-        songViewModel.getListSongBySinger(accessToken, "")
 
         songViewModel.loading.observe(this) {
-            if (!it && songViewModel.listSongBySinger.isNullOrEmpty()) {
+            if (!it) {
                 songAdapter.setDataList(songViewModel.listSongBySinger)
             }
         }

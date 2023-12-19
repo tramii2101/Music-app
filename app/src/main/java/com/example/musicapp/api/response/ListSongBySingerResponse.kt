@@ -17,5 +17,5 @@ data class MusicBySingerData(
 
 data class ListSongBySingerData(
     @SerializedName("singer" ) val singer : String?,
-    @SerializedName("musics" ) val musics : ArrayList<MusicBySingerData> = arrayListOf()
+    @SerializedName("musics" ) val musics : ArrayList<MusicBySingerData>
 )

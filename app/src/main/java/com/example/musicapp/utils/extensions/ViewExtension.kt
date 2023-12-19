@@ -15,10 +15,10 @@ import androidx.recyclerview.widget.RecyclerView
 fun CheckBox.showHidePassword(edt: EditText) {
     if (this.isChecked) {
         edt.transformationMethod =
-            PasswordTransformationMethod.getInstance()
+            HideReturnsTransformationMethod.getInstance()
     } else {
         edt.transformationMethod =
-            HideReturnsTransformationMethod.getInstance()
+            PasswordTransformationMethod.getInstance()
     }
 }
 
