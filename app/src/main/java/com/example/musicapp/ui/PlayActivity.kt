@@ -1,4 +1,4 @@
-package com.example.musicapp.ui.play
+package com.example.musicapp.ui
 
 import android.content.Context
 import android.content.SharedPreferences

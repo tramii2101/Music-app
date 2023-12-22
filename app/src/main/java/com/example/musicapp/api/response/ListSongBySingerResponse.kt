@@ -8,7 +8,7 @@ data class ListSongBySingerResponse(
     @SerializedName("data"    ) val data    : ListSongBySingerData?
 )
 
-data class MusicBySingerData(
+data class MusicData(
     @SerializedName("title"  ) val title  : String?,
     @SerializedName("image"  ) val image  : String?,
     @SerializedName("length" ) val length : Int?,
@@ -17,5 +17,5 @@ data class MusicBySingerData(
 
 data class ListSongBySingerData(
     @SerializedName("singer" ) val singer : String?,
-    @SerializedName("musics" ) val musics : ArrayList<MusicBySingerData>
+    @SerializedName("musics" ) val musics : ArrayList<MusicData>
 )

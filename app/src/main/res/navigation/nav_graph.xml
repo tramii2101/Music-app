@@ -6,7 +6,7 @@
     app:startDestination="@id/homeFragment">
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.musicapp.ui.home.HomeFragment"
+        android:name="com.example.musicapp.ui.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -15,10 +15,13 @@
         <action
             android:id="@+id/action_homeFragment_to_playActivity"
             app:destination="@id/playActivity" />
+        <action
+            android:id="@+id/action_homeFragment_to_categoryFragment"
+            app:destination="@id/categoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/singerDetailFragment"
-        android:name="com.example.musicapp.ui.singer.SingerDetailFragment"
+        android:name="com.example.musicapp.ui.SingerDetailFragment"
         android:label="fragment_singer_detail"
         tools:layout="@layout/fragment_singer_detail" >
         <action
@@ -27,7 +30,16 @@
     </fragment>
     <activity
         android:id="@+id/playActivity"
-        android:name="com.example.musicapp.ui.play.PlayActivity"
+        android:name="com.example.musicapp.ui.PlayActivity"
         android:label="activity_play"
         tools:layout="@layout/activity_play" />
+    <fragment
+        android:id="@+id/categoryFragment"
+        android:name="com.example.musicapp.ui.CategoryFragment"
+        android:label="fragment_category"
+        tools:layout="@layout/fragment_category" >
+        <action
+            android:id="@+id/action_categoryFragment_to_playActivity"
+            app:destination="@id/playActivity" />
+    </fragment>
 </navigation>

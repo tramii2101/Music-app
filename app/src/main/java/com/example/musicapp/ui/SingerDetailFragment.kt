@@ -1,4 +1,4 @@
-package com.example.musicapp.ui.singer
+package com.example.musicapp.ui
 
 import android.content.Context
 import android.content.Intent
@@ -9,7 +9,6 @@ import com.bumptech.glide.Glide
 import com.example.musicapp.adapters.SongItemAdapter
 import com.example.musicapp.base.BaseFragment
 import com.example.musicapp.databinding.FragmentSingerDetailBinding
-import com.example.musicapp.ui.play.PlayActivity
 import com.example.musicapp.utils.extensions.setLinearLayoutManager
 import com.example.musicapp.viewmodel.SingerViewModel
 import com.example.musicapp.viewmodel.SongViewModel
@@ -47,12 +46,12 @@ class SingerDetailFragment : BaseFragment<FragmentSingerDetailBinding>() {
         binding.rcvListSong.setLinearLayoutManager(
             requireContext(),
             songAdapter,
-            RecyclerView.HORIZONTAL
+            RecyclerView.VERTICAL
         )
     }
 
     override fun bindData() {
-        songViewModel.getListSongBySinger(accessToken, singerId)
+        songViewModel.getListSongBySinger("Bearer $accessToken", singerId)
         singerViewModel.getSingerDetail(accessToken, singerId)
         singerViewModel.loading.observe(this) {
             if (!it) {
