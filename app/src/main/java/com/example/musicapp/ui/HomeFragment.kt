@@ -1,4 +1,4 @@
-package com.example.musicapp.ui.home
+package com.example.musicapp.ui
 
 import android.content.Context
 import android.content.Intent
@@ -12,7 +12,6 @@ import com.example.musicapp.adapters.SingerAdapter
 import com.example.musicapp.adapters.SongAdapter
 import com.example.musicapp.base.BaseFragment
 import com.example.musicapp.databinding.FragmentHomeBinding
-import com.example.musicapp.ui.play.PlayActivity
 import com.example.musicapp.utils.common.Screen
 import com.example.musicapp.utils.extensions.setGridLayoutManager
 import com.example.musicapp.utils.extensions.setLinearLayoutManager
@@ -119,11 +118,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         categoryAdapter.setOnClickItem { item, _ ->
             if (item != null) {
                 sharedPreferences.edit().putString("categoryId", item.id).apply()
+                sharedPreferences.edit().putString("categoryName", item.name).apply()
+                findNavController().navigate(R.id.action_homeFragment_to_categoryFragment)
             }
         }
 
         singerAdapter.setOnClickItem { item, position ->
-            val singer =singerViewModel.listSinger[position]
+            val singer = singerViewModel.listSinger[position]
             if (item != null) {
                 val singerId = item.id.toString()
                 sharedPreferences.edit().putString("singerId", singer.id.toString()).apply()

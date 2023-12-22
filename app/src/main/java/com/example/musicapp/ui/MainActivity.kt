@@ -7,7 +7,7 @@ import androidx.navigation.ui.NavigationUI
 import com.example.musicapp.R
 import com.example.musicapp.base.BaseActivity
 import com.example.musicapp.databinding.ActivityMainBinding
-import com.example.musicapp.ui.home.HomeFragment
+import com.example.musicapp.ui.HomeFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {

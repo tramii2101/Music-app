@@ -6,6 +6,7 @@ import com.example.musicapp.api.response.ListCategoriesResponse
 import com.example.musicapp.api.response.ListSingerResponse
 import com.example.musicapp.api.response.ListSongBySingerResponse
 import com.example.musicapp.api.response.ListSongHomeResponse
+import com.example.musicapp.api.response.ListSongInCategoryResponse
 import com.example.musicapp.api.response.LoginResponse
 import com.example.musicapp.api.response.RegisterResponse
 import com.example.musicapp.api.response.SingerDetailResponse
@@ -55,6 +56,12 @@ interface ApiService {
         @Header("Authorization") accessToken: String,
         @Path("singerId") singerId: String
     ): Call<ListSongBySingerResponse>
+
+    @GET(ApiConstants.GET_SONG_IN_CATEGORY)
+    fun getSongByCategory(
+        @Header("Authorization") accessToken: String,
+        @Path("categoryId") categoryId: String
+    ): Call<ListSongInCategoryResponse>
 
 
 }
