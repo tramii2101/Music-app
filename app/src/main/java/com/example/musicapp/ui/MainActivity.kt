@@ -17,11 +17,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     }
 
     override fun initView() {
+//        setCurrentFragment(HomeFragment())
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
-        val bottomNavView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
-        NavigationUI.setupWithNavController(bottomNavView, navController)
+//        val bottomNavView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+//        NavigationUI.setupWithNavController(bottomNavView, navController)
     }
 
     override fun bindData() {
@@ -29,10 +30,21 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     }
 
     override fun handleEvent() {
-        binding.bottomNavigation.setOnItemReselectedListener {
+        binding.bottomNavigation.setOnItemSelectedListener {
             when (it.itemId) {
-                R.id.action_home -> loadFragment(HomeFragment())
+                R.id.action_home -> setCurrentFragment(HomeFragment())
+                R.id.action_explore -> setCurrentFragment(ExploreFragment())
             }
+
+//            if (it.itemId == R.id.action_home) {
+//                loadFragment(HomeFragment())
+//            }else {
+//                if (it.itemId == R.id.action_explore) {
+//                    loadFragment(ExploreFragment())
+//                }
+//            }
+
+            true
         }
     }
 
@@ -40,4 +52,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment, fragment)
             .addToBackStack(null).commit()
     }
+
+    private fun setCurrentFragment(fragment: Fragment) =
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.nav_host_fragment, fragment)
+            commit()
+        }
+
 }
