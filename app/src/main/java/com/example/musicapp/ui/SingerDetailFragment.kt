@@ -52,7 +52,7 @@ class SingerDetailFragment : BaseFragment<FragmentSingerDetailBinding>() {
 
     override fun bindData() {
         songViewModel.getListSongBySinger("Bearer $accessToken", singerId)
-        singerViewModel.getSingerDetail(accessToken, singerId)
+        singerViewModel.getSingerDetail("Bearer $accessToken", singerId)
         singerViewModel.loading.observe(this) {
             if (!it) {
                 Glide.with(binding.imgAvatar.context).load(singerViewModel.singer.avatar)

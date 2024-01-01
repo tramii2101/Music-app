@@ -26,7 +26,7 @@ class CategoryViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 ApiHelper.getInstance().getListCategories(accessToken).enqueue(
-                    object : Callback<ListCategoriesResponse>{
+                    object : Callback<ListCategoriesResponse> {
                         override fun onResponse(
                             call: Call<ListCategoriesResponse>,
                             response: Response<ListCategoriesResponse>

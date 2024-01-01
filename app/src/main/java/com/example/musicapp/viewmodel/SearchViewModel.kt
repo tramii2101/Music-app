@@ -9,7 +9,6 @@ import com.example.musicapp.api.response.SearchResponse
 import com.example.musicapp.api.response.SongResult
 import com.example.musicapp.model.Category
 import com.example.musicapp.model.Singer
-import com.example.musicapp.model.Song
 import kotlinx.coroutines.launch
 import org.json.JSONObject
 import retrofit2.Call
