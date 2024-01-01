@@ -1,7 +1,7 @@
 package com.example.musicapp.utils.common
 
 object ApiConstants {
-    const val BASE_URL = "https://hitmusic.tech"
+    const val BASE_URL = "https://music.hitly.vn"
 
     // Auth API
     const val REGISTER = "/api/auth/register"

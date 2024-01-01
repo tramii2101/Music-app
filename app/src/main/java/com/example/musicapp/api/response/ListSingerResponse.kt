@@ -1,6 +1,5 @@
 package com.example.musicapp.api.response
 
-import com.example.musicapp.model.Category
 import com.example.musicapp.model.Singer
 import com.google.gson.annotations.SerializedName
 
@@ -11,5 +10,5 @@ data class ListSingerResponse(
 )
 
 data class ListSingerData(
-    @SerializedName("results"      ) var results      : ArrayList<Singer> = arrayListOf(),
+    @SerializedName("results") var results: ArrayList<Singer> = arrayListOf(),
 )

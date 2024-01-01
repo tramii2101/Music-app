@@ -9,6 +9,7 @@ import com.example.musicapp.api.response.ListSongHomeResponse
 import com.example.musicapp.api.response.ListSongInCategoryResponse
 import com.example.musicapp.api.response.LoginResponse
 import com.example.musicapp.api.response.RegisterResponse
+import com.example.musicapp.api.response.SearchResponse
 import com.example.musicapp.api.response.SingerDetailResponse
 import com.example.musicapp.api.response.SongResponse
 import com.example.musicapp.model.User
@@ -19,6 +20,7 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface ApiService {
     @POST(ApiConstants.LOGIN)
@@ -63,5 +65,10 @@ interface ApiService {
         @Path("categoryId") categoryId: String
     ): Call<ListSongInCategoryResponse>
 
+    @GET(ApiConstants.SEARCH)
+    fun search(
+        @Header("Authorization") accessToken: String,
+        @Query("keyword") keyword: String
+    ): Call<SearchResponse>
 
 }

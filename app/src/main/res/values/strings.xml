@@ -29,4 +29,7 @@
     <string name="category">Category</string>
     <string name="see_all">See all</string>
     <string name="list_songs">List Songs</string>
+    <string name="singer">Singer</string>
+    <string name="song">Song</string>
+    <string name="all">All</string>
 </resources>

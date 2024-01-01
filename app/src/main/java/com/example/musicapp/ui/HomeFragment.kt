@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.musicapp.R
@@ -16,6 +17,7 @@ import com.example.musicapp.utils.common.Screen
 import com.example.musicapp.utils.extensions.setGridLayoutManager
 import com.example.musicapp.utils.extensions.setLinearLayoutManager
 import com.example.musicapp.viewmodel.CategoryViewModel
+import com.example.musicapp.viewmodel.SearchViewModel
 import com.example.musicapp.viewmodel.SingerViewModel
 import com.example.musicapp.viewmodel.SongViewModel
 
@@ -38,15 +40,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     private val songViewModel by lazy {
-        SongViewModel()
+        ViewModelProvider(this)[SongViewModel::class.java]
     }
 
     private val singerViewModel by lazy {
-        SingerViewModel()
+        ViewModelProvider(this)[SingerViewModel::class.java]
     }
 
     private val categoryViewModel by lazy {
-        CategoryViewModel()
+        ViewModelProvider(this)[CategoryViewModel::class.java]
     }
 
     override fun inflateLayout(

@@ -18,8 +18,8 @@ import retrofit2.Response
 class SingerViewModel : ViewModel() {
     var message = ""
 
-    var listSinger  = mutableListOf<Singer>()
-    lateinit var singer : Singer
+    var listSinger = mutableListOf<Singer>()
+    lateinit var singer: Singer
 
     private val _loading = MutableLiveData(/* value = */ true)
     val loading: LiveData<Boolean>

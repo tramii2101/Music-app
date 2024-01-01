@@ -149,7 +149,10 @@ class SongViewModel : ViewModel() {
                             }
                         }
 
-                        override fun onFailure(call: Call<ListSongInCategoryResponse>, t: Throwable) {
+                        override fun onFailure(
+                            call: Call<ListSongInCategoryResponse>,
+                            t: Throwable
+                        ) {
                             message = "Oops! Something went wrong..."
                             _loading.value = false
                         }

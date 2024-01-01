@@ -42,4 +42,19 @@
             android:id="@+id/action_categoryFragment_to_playActivity"
             app:destination="@id/playActivity" />
     </fragment>
+    <fragment
+        android:id="@+id/exploreFragment"
+        android:name="com.example.musicapp.ui.ExploreFragment"
+        android:label="fragment_explore"
+        tools:layout="@layout/fragment_explore" >
+        <action
+            android:id="@+id/action_exploreFragment_to_playActivity"
+            app:destination="@id/playActivity" />
+        <action
+            android:id="@+id/action_exploreFragment_to_categoryFragment"
+            app:destination="@id/categoryFragment" />
+        <action
+            android:id="@+id/action_exploreFragment_to_singerDetailFragment"
+            app:destination="@id/singerDetailFragment" />
+    </fragment>
 </navigation>
