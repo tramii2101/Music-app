@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.LibraryFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="@string/library"
+        android:fontFamily="@font/urbanist_semi_bold"
+        android:textSize="24sp"/>
+
+    <LinearLayout
+        android:id="@+id/song"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_music"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:layout_marginStart="10dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/songs"
+            android:fontFamily="@font/urbanist_regular"
+            android:layout_gravity="center_vertical"
+            android:textSize="24sp"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_chevron_right"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/singer"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_group"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:layout_marginStart="10dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/singer"
+            android:fontFamily="@font/urbanist_regular"
+            android:layout_gravity="center_vertical"
+            android:textSize="24sp"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_chevron_right"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/category"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_list"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:layout_marginStart="10dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/category"
+            android:fontFamily="@font/urbanist_regular"
+            android:layout_gravity="center_vertical"
+            android:textSize="24sp"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_chevron_right"/>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -34,6 +34,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             when (it.itemId) {
                 R.id.action_home -> setCurrentFragment(HomeFragment())
                 R.id.action_explore -> setCurrentFragment(ExploreFragment())
+                R.id.action_library -> setCurrentFragment(LibraryFragment())
             }
 
 //            if (it.itemId == R.id.action_home) {

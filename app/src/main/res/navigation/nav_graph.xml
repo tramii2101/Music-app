@@ -57,4 +57,46 @@
             android:id="@+id/action_exploreFragment_to_singerDetailFragment"
             app:destination="@id/singerDetailFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/allCategoryFragment"
+        android:name="com.example.musicapp.ui.AllCategoryFragment"
+        android:label="fragment_all_category"
+        tools:layout="@layout/fragment_all_category" >
+        <action
+            android:id="@+id/action_allCategoryFragment_to_categoryFragment"
+            app:destination="@id/categoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/allSongFragment"
+        android:name="com.example.musicapp.ui.AllSongFragment"
+        android:label="fragment_all_song"
+        tools:layout="@layout/fragment_all_song" >
+        <action
+            android:id="@+id/action_allSongFragment_to_playActivity2"
+            app:destination="@id/playActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/allSingerFragment"
+        android:name="com.example.musicapp.ui.AllSingerFragment"
+        android:label="fragment_all_singer"
+        tools:layout="@layout/fragment_all_singer" >
+        <action
+            android:id="@+id/action_allSingerFragment_to_singerDetailFragment"
+            app:destination="@id/singerDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/libraryFragment"
+        android:name="com.example.musicapp.ui.LibraryFragment"
+        android:label="fragment_library"
+        tools:layout="@layout/fragment_library" >
+        <action
+            android:id="@+id/action_libraryFragment_to_allSongFragment"
+            app:destination="@id/allSongFragment" />
+        <action
+            android:id="@+id/action_libraryFragment_to_allCategoryFragment"
+            app:destination="@id/allCategoryFragment" />
+        <action
+            android:id="@+id/action_libraryFragment_to_allSingerFragment"
+            app:destination="@id/allSingerFragment" />
+    </fragment>
 </navigation>

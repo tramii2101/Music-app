@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.musicapp.adapters.SongItemAdapter
-import com.example.musicapp.api.response.MusicData
 import com.example.musicapp.base.BaseFragment
 import com.example.musicapp.databinding.FragmentCategoryBinding
 import com.example.musicapp.utils.extensions.setLinearLayoutManager
@@ -25,8 +24,6 @@ class CategoryFragment : BaseFragment<FragmentCategoryBinding>() {
     private val songViewModel by lazy {
         SongViewModel()
     }
-
-    private var listData = mutableListOf<MusicData>()
 
 
     override fun inflateLayout(
