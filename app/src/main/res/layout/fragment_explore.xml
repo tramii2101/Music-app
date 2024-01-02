@@ -104,7 +104,7 @@
                     android:id="@+id/list_results_singers"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:listitem="@layout/item_singer" />
+                    tools:listitem="@layout/item_singer_result" />
 
 
             </LinearLayout>

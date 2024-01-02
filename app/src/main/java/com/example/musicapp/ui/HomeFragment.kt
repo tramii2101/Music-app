@@ -17,7 +17,6 @@ import com.example.musicapp.utils.common.Screen
 import com.example.musicapp.utils.extensions.setGridLayoutManager
 import com.example.musicapp.utils.extensions.setLinearLayoutManager
 import com.example.musicapp.viewmodel.CategoryViewModel
-import com.example.musicapp.viewmodel.SearchViewModel
 import com.example.musicapp.viewmodel.SingerViewModel
 import com.example.musicapp.viewmodel.SongViewModel
 
@@ -132,7 +131,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 sharedPreferences.edit().putString("singerId", singer.id.toString()).apply()
                 findNavController().navigate(R.id.action_homeFragment_to_singerDetailFragment)
             }
-
         }
     }
 
