@@ -56,6 +56,10 @@ class AllCategoryFragment : BaseFragment<FragmentAllCategoryBinding>() {
                 findNavController().navigate(R.id.action_allCategoryFragment_to_categoryFragment)
             }
         }
+
+        binding.imgBack.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
     }
 
 }

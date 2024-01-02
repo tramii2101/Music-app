@@ -78,6 +78,10 @@ class SingerDetailFragment : BaseFragment<FragmentSingerDetailBinding>() {
             val intent = Intent(requireContext(), PlayActivity::class.java)
             startActivity(intent)
         }
+
+        binding.back.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
     }
 
 }

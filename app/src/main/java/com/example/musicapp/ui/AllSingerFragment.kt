@@ -51,8 +51,11 @@ class AllSingerFragment : BaseFragment<FragmentAllSingerBinding>() {
                 sharedPreferences.edit().putString("singerId", singer.id.toString()).apply()
                 findNavController().navigate(R.id.action_allSingerFragment_to_singerDetailFragment)
             }
-
         }
+        binding.imgBack.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
+
     }
 
 }

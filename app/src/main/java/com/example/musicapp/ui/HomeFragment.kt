@@ -131,7 +131,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 sharedPreferences.edit().putString("singerId", singer.id.toString()).apply()
                 findNavController().navigate(R.id.action_homeFragment_to_singerDetailFragment)
             }
-
         }
     }
 

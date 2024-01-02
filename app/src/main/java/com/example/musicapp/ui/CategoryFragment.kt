@@ -68,6 +68,9 @@ class CategoryFragment : BaseFragment<FragmentCategoryBinding>() {
             startActivity(intent)
         }
 
+        binding.imgBack.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
     }
 
 }

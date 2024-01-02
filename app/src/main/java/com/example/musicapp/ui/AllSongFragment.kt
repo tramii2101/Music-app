@@ -56,6 +56,10 @@ class AllSongFragment : BaseFragment<FragmentAllSongBinding>() {
             val intent = Intent(requireContext(), PlayActivity::class.java)
             startActivity(intent)
         }
+
+        binding.imgBack.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
     }
 
 }

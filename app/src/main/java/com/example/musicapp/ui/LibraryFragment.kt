@@ -26,15 +26,24 @@ class LibraryFragment : BaseFragment<FragmentLibraryBinding>() {
 
     override fun handleEvent() {
         binding.category.setOnClickListener {
-            findNavController().navigate(R.id.action_libraryFragment_to_allCategoryFragment)
+//            findNavController().navigate(R.id.action_libraryFragment_to_allCategoryFragment)
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.nav_host_fragment, AllCategoryFragment()).addToBackStack(null)
+                .commit()
         }
 
         binding.singer.setOnClickListener {
-            findNavController().navigate(R.id.action_libraryFragment_to_allSingerFragment)
+//            findNavController().navigate(R.id.action_libraryFragment_to_allSingerFragment)
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.nav_host_fragment, AllSingerFragment()).addToBackStack(null)
+                .commit()
         }
 
         binding.song.setOnClickListener {
-            findNavController().navigate(R.id.action_libraryFragment_to_allSongFragment)
+//            findNavController().navigate(R.id.action_libraryFragment_to_allSongFragment)
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.nav_host_fragment, AllSongFragment()).addToBackStack(null)
+                .commit()
         }
     }
 
