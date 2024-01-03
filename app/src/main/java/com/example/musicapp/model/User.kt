@@ -11,5 +11,6 @@ data class User(
     @SerializedName("gender"      ) val gender      : String,
     @SerializedName("role"        ) val role        : String,
     @SerializedName("activeVip"   ) val activeVip   : Boolean,
-    @SerializedName("phoneNumber" ) val phoneNumber : String,
     @SerializedName("id"          ) val id          : String)
+
+//    @SerializedName("phoneNumber" ) val phoneNumber : String,

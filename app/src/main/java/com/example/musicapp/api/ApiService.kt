@@ -12,6 +12,7 @@ import com.example.musicapp.api.response.RegisterResponse
 import com.example.musicapp.api.response.SearchResponse
 import com.example.musicapp.api.response.SingerDetailResponse
 import com.example.musicapp.api.response.SongResponse
+import com.example.musicapp.api.response.UserProfileResponse
 import com.example.musicapp.model.User
 import com.example.musicapp.utils.common.ApiConstants
 import retrofit2.Call
@@ -19,6 +20,7 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -70,5 +72,8 @@ interface ApiService {
         @Header("Authorization") accessToken: String,
         @Query("keyword") keyword: String
     ): Call<SearchResponse>
+
+    @GET(ApiConstants.USER_PROFILE)
+    fun getUserProfile(@Header("Authorization") accessToken: String): Call<UserProfileResponse>
 
 }

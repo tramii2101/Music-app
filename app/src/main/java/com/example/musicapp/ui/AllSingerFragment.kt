@@ -41,7 +41,13 @@ class AllSingerFragment : BaseFragment<FragmentAllSingerBinding>() {
     }
 
     override fun bindData() {
-        singerAdapter.setDataList(singerViewModel.listSinger)
+        val accessToken = sharedPreferences.getString("accessToken", "")
+        singerViewModel.getListSinger("Bearer $accessToken")
+        singerViewModel.loading.observe(this) {
+            if (!it && singerViewModel.listSinger.isNotEmpty()) {
+                singerAdapter.setDataList(singerViewModel.listSinger)
+            }
+        }
     }
 
     override fun handleEvent() {

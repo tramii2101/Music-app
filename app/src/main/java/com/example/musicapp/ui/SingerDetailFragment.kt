@@ -75,6 +75,7 @@ class SingerDetailFragment : BaseFragment<FragmentSingerDetailBinding>() {
                 sharedPreferences.edit().putString("songId", item.id).apply()
             }
             sharedPreferences.edit().putInt("song_position", position).apply()
+            sharedPreferences.edit().putString("previousFragment", "SingerDetail").apply()
             val intent = Intent(requireContext(), PlayActivity::class.java)
             startActivity(intent)
         }

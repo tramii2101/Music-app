@@ -35,23 +35,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 R.id.action_home -> setCurrentFragment(HomeFragment())
                 R.id.action_explore -> setCurrentFragment(ExploreFragment())
                 R.id.action_library -> setCurrentFragment(LibraryFragment())
+                R.id.action_profile -> setCurrentFragment(ProfileFragment())
             }
-
-//            if (it.itemId == R.id.action_home) {
-//                loadFragment(HomeFragment())
-//            }else {
-//                if (it.itemId == R.id.action_explore) {
-//                    loadFragment(ExploreFragment())
-//                }
-//            }
 
             true
         }
-    }
-
-    private fun loadFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment, fragment)
-            .addToBackStack(null).commit()
     }
 
     private fun setCurrentFragment(fragment: Fragment) =

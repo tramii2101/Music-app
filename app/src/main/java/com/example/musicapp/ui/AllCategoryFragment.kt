@@ -45,7 +45,14 @@ class AllCategoryFragment : BaseFragment<FragmentAllCategoryBinding>() {
     }
 
     override fun bindData() {
-        categoryAdapter.setDataList(categoryViewModel.categories)
+        val accessToken = sharedPreferences.getString("accessToken", "")
+
+        categoryViewModel.getListCategories("Bearer $accessToken")
+        categoryViewModel.loading.observe(this) {
+            if (!it && categoryViewModel.categories.isNotEmpty()) {
+                categoryAdapter.setDataList(categoryViewModel.categories)
+            }
+        }
     }
 
     override fun handleEvent() {

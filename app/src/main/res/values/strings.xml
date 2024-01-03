@@ -33,4 +33,6 @@
     <string name="song">Song</string>
     <string name="all">All</string>
     <string name="songs">Songs</string>
+    <string name="edit_profile">Edit profile</string>
+    <string name="update">Update</string>
 </resources>
