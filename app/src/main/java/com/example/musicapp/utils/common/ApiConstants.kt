@@ -22,4 +22,5 @@ object ApiConstants {
     const val GET_SONG_BY_SINGER_ID = "/api/musics/singer/{singerId}"
     const val GET_SONG_IN_CATEGORY = "/api/musics/category/{categoryId}"
     const val SEARCH =  "/api/musics/search"
+    const val USER_PROFILE  =  "/api/auth/profile"
 }

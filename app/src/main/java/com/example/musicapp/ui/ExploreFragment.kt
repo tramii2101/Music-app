@@ -137,20 +137,20 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding>() {
 
             if (checkedId == R.id.radio_singer) {
                 binding.rsSinger.visibility = View.VISIBLE
-                binding.rsSong.visibility = View.INVISIBLE
-                binding.rsCategory.visibility = View.INVISIBLE
+                binding.rsSong.visibility = View.GONE
+                binding.rsCategory.visibility = View.GONE
             }
 
             if (checkedId == R.id.radio_song) {
-                binding.rsSinger.visibility = View.INVISIBLE
+                binding.rsSinger.visibility = View.GONE
                 binding.rsSong.visibility = View.VISIBLE
-                binding.rsCategory.visibility = View.INVISIBLE
+                binding.rsCategory.visibility = View.GONE
             }
 
             if (checkedId == R.id.radio_category) {
-                binding.rsSinger.visibility = View.INVISIBLE
+                binding.rsSinger.visibility = View.GONE
                 binding.rsCategory.visibility = View.VISIBLE
-                binding.rsSong.visibility = View.INVISIBLE
+                binding.rsSong.visibility = View.GONE
             }
         }
 

@@ -39,7 +39,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     private val songViewModel by lazy {
-        ViewModelProvider(this)[SongViewModel::class.java]
+        activity?.let { ViewModelProvider(it) }!![SongViewModel::class.java]
     }
 
     private val singerViewModel by lazy {
@@ -112,6 +112,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                     .putString("songId", item.id).apply()
             }
             sharedPreferences.edit().putInt("song_position", position).apply()
+            sharedPreferences.edit().putString("previousFragment", "HomeFragment").apply()
             val intent = Intent(requireContext(), PlayActivity::class.java)
             startActivity(intent)
         }
@@ -127,7 +128,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         singerAdapter.setOnClickItem { item, position ->
             val singer = singerViewModel.listSinger[position]
             if (item != null) {
-                val singerId = item.id.toString()
                 sharedPreferences.edit().putString("singerId", singer.id.toString()).apply()
                 findNavController().navigate(R.id.action_homeFragment_to_singerDetailFragment)
             }

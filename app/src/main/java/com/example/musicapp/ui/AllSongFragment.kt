@@ -42,7 +42,13 @@ class AllSongFragment : BaseFragment<FragmentAllSongBinding>() {
     }
 
     override fun bindData() {
-        songAdapter.setDataList(songViewModel.listSongAtHome)
+        val accessToken = sharedPreferences.getString("accessToken", "")
+        songViewModel.getListSong("Bearer $accessToken")
+        songViewModel.loading.observe(this) {
+            if (!it && songViewModel.listSongAtHome.isNotEmpty()) {
+                songAdapter.setDataList(songViewModel.listSongAtHome)
+            }
+        }
     }
 
     override fun handleEvent() {
