@@ -77,6 +77,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                             sharedPreferences.edit().putString("username", username).apply()
                             sharedPreferences.edit().putString("password", password).apply()
                         }
+
                         val intent = Intent(requireContext(), MainActivity::class.java)
                         startActivity(intent)
                     } else {

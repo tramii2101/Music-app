@@ -1,6 +1,7 @@
 package com.example.musicapp.ui
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
@@ -18,7 +19,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
     }
 
     private val viewModel by lazy {
-        ViewModelProvider(this)[UserViewModel::class.java]
+        ViewModelProvider(requireActivity())[UserViewModel::class.java]
     }
 
     override fun inflateLayout(
@@ -29,26 +30,25 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
     }
 
     override fun initView() {
-
+        if (viewModel.user != null){
+            fillUserData()
+        }
     }
 
     override fun bindData() {
         val accessToken = sharedPreferences.getString("accessToken", null)
+        Log.e(accessToken, "$accessToken")
         if (accessToken != null) {
             viewModel.getUserProfile("Bearer $accessToken")
             viewModel.loading.observe(this) {
                 if (!it && viewModel.user != null) {
-                    binding.tvFullname.text = viewModel.user!!.fullname
-                    binding.tvUsername.text = viewModel.user!!.username
-                    Glide.with(binding.ivAvt.context)
-                        .load(ApiConstants.BASE_URL + viewModel.user!!.avatar).into(binding.ivAvt)
-                    binding.tvEmail.text = viewModel.user!!.email
-                    binding.tvDob.text = viewModel.user!!.dateOfBirth.substring(0, 10)
-                    binding.tvGender.text = viewModel.user!!.gender
+                    fillUserData()
                 }
             }
         }
     }
+
+
 
     override fun handleEvent() {
         binding.btnEdit.setOnClickListener {
@@ -56,6 +56,16 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                 .replace(R.id.nav_host_fragment, EditProfileFragment()).addToBackStack(null)
                 .commit()
         }
+    }
+
+    private fun fillUserData() {
+        binding.tvFullname.text = viewModel.user!!.fullname
+        binding.tvUsername.text = viewModel.user!!.username
+        Glide.with(binding.ivAvt.context)
+            .load(ApiConstants.BASE_URL + viewModel.user!!.avatar).into(binding.ivAvt)
+        binding.tvEmail.text = viewModel.user!!.email
+        binding.tvDob.text = viewModel.user!!.dateOfBirth.substring(0, 10)
+        binding.tvGender.text = viewModel.user!!.gender
     }
 
 }

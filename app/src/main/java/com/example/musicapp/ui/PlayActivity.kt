@@ -33,6 +33,7 @@ class PlayActivity : BaseActivity<ActivityPlayBinding>() {
         ViewModelProvider(this)[SearchViewModel::class.java]
     }
 
+    var isPlaying: Boolean = true
     val handler: Handler = Handler()
     override fun inflateViewBinding(layoutInflater: LayoutInflater): ActivityPlayBinding {
         return ActivityPlayBinding.inflate(layoutInflater)
@@ -115,6 +116,7 @@ class PlayActivity : BaseActivity<ActivityPlayBinding>() {
         }
 
         binding.play.setOnCheckedChangeListener { _, isChecked ->
+            isPlaying = isChecked
             if (!isChecked)
                 mediaPlayer.pause()
             else mediaPlayer.start()
@@ -161,7 +163,6 @@ class PlayActivity : BaseActivity<ActivityPlayBinding>() {
                     if (!it && viewModel.song != null) {
                         bindSongData(viewModel.song!!)
                         fillData(viewModel.song!!.audio)
-//                        playMusic(mediaPlayer, viewModel.song!!.audio)
                     }
                 }
             }
@@ -260,10 +261,6 @@ class PlayActivity : BaseActivity<ActivityPlayBinding>() {
         }
         return listId
     }
-
-
-
-
 
     private fun playMusic(mediaPlayer: MediaPlayer, audio: String) {
         mediaPlayer.setDataSource(audio)

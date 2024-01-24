@@ -1,7 +1,9 @@
 package com.example.musicapp.api
 
+import com.example.musicapp.api.request.EditProfileRequest
 import com.example.musicapp.api.request.LoginRequest
 import com.example.musicapp.api.request.RegisterRequest
+import com.example.musicapp.api.response.EditProfileResponse
 import com.example.musicapp.api.response.ListCategoriesResponse
 import com.example.musicapp.api.response.ListSingerResponse
 import com.example.musicapp.api.response.ListSongBySingerResponse
@@ -15,6 +17,7 @@ import com.example.musicapp.api.response.SongResponse
 import com.example.musicapp.api.response.UserProfileResponse
 import com.example.musicapp.model.User
 import com.example.musicapp.utils.common.ApiConstants
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -75,5 +78,11 @@ interface ApiService {
 
     @GET(ApiConstants.USER_PROFILE)
     fun getUserProfile(@Header("Authorization") accessToken: String): Call<UserProfileResponse>
+
+    @PUT(ApiConstants.USER_PROFILE)
+    fun updateUserProfile(
+        @Header("Authorization") accessToken: String,
+        @Body infor: EditProfileRequest
+    ): Call<EditProfileResponse>
 
 }
