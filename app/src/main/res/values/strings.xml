@@ -35,4 +35,6 @@
     <string name="songs">Songs</string>
     <string name="edit_profile">Edit profile</string>
     <string name="update">Update</string>
+    <string name="dob">DOB</string>
+    <string name="gender">Gender</string>
 </resources>

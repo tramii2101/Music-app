@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.musicapp.api.ApiHelper
+import com.example.musicapp.api.request.EditProfileRequest
+import com.example.musicapp.api.response.EditProfileResponse
 import com.example.musicapp.api.response.UserProfileResponse
 import com.example.musicapp.model.User
 import kotlinx.coroutines.launch
@@ -13,7 +15,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.HttpException
 import retrofit2.Response
-import java.net.SocketTimeoutException
 
 class UserViewModel : ViewModel() {
     var message = ""
@@ -58,6 +59,50 @@ class UserViewModel : ViewModel() {
                 _loading.value = false
             }
         }
+    }
+
+    fun updateUserProfile(
+        accessToken: String,
+        fullname: String?,
+        email: String?,
+        gender: String?,
+        dob: String?,
+    ) {
+        viewModelScope.launch {
+            val userInfor = EditProfileRequest(fullname, email, gender, dob)
+            try {
+                ApiHelper.getInstance().updateUserProfile(
+                    accessToken,
+                    userInfor
+                ).enqueue(
+                    object : Callback<EditProfileResponse> {
+                        override fun onResponse(
+                            call: Call<EditProfileResponse>,
+                            response: Response<EditProfileResponse>
+                        ) {
+
+                            if (response.isSuccessful) {
+                                user = response.body()?.data
+                                _loading.value = false
+                                message = response.message()
+                            } else {
+                                message =
+                                    JSONObject(response.errorBody()!!.string()).getString("message")
+                                _loading.value = false
+                            }
+                        }
+
+                        override fun onFailure(call: Call<EditProfileResponse>, t: Throwable) {
+
+                        }
+
+                    }
+                )
+            } catch (ex: HttpException) {
+                null
+            }
+        }
+
     }
 
 }
