@@ -1,9 +1,14 @@
 package com.example.musicapp.api
 
+import com.example.musicapp.api.request.CreateNewPasswordRequest
 import com.example.musicapp.api.request.EditProfileRequest
+import com.example.musicapp.api.request.ForgotPasswordRequest
 import com.example.musicapp.api.request.LoginRequest
 import com.example.musicapp.api.request.RegisterRequest
+import com.example.musicapp.api.request.VerifyOtpRequest
+import com.example.musicapp.api.response.BaseResponse
 import com.example.musicapp.api.response.EditProfileResponse
+import com.example.musicapp.api.response.ForgotPasswordResponse
 import com.example.musicapp.api.response.ListCategoriesResponse
 import com.example.musicapp.api.response.ListSingerResponse
 import com.example.musicapp.api.response.ListSongBySingerResponse
@@ -15,6 +20,7 @@ import com.example.musicapp.api.response.SearchResponse
 import com.example.musicapp.api.response.SingerDetailResponse
 import com.example.musicapp.api.response.SongResponse
 import com.example.musicapp.api.response.UserProfileResponse
+import com.example.musicapp.api.response.VerifyOtpResponse
 import com.example.musicapp.model.User
 import com.example.musicapp.utils.common.ApiConstants
 import okhttp3.RequestBody
@@ -37,6 +43,14 @@ interface ApiService {
     fun register(
         @Body registerRequest: RegisterRequest
     ): Call<RegisterResponse<User>>
+
+    @POST
+    fun forgotPassword(@Body email: ForgotPasswordRequest): Call<ForgotPasswordResponse>
+
+    @POST
+    fun enterOTP(@Body verifyOtp: VerifyOtpRequest): Call<VerifyOtpResponse>
+
+    fun resetPassword(@Body createNewPasswordRequest: CreateNewPasswordRequest): Call<BaseResponse>
 
     @GET(ApiConstants.GET_SONG_BY_ID)
     fun getSongById(
