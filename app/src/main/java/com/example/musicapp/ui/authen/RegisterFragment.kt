@@ -2,8 +2,12 @@ package com.example.musicapp.ui.authen
 
 import android.app.ProgressDialog
 import android.content.Context
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.CheckBox
+import android.widget.EditText
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.example.musicapp.R
@@ -111,5 +115,14 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
         return err <= 0
     }
 
+    private fun showHidePassword(checkBox: CheckBox, edt: EditText) {
+        if (checkBox.isChecked) {
+            edt.transformationMethod =
+                HideReturnsTransformationMethod.getInstance()
+        } else {
+            edt.transformationMethod =
+                PasswordTransformationMethod.getInstance()
+        }
 
+    }
 }

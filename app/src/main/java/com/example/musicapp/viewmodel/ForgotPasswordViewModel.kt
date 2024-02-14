@@ -1,5 +1,7 @@
 package com.example.musicapp.viewmodel
 
+import android.content.ContentValues.TAG
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -65,8 +67,9 @@ class ForgotPasswordViewModel : ViewModel() {
                 getMessage(httpEx)
                 _hasError.value = true
             } catch (ex: Exception) {
+                Log.e(TAG, "enterEmail: ${ex.stackTraceToString()}", )
                 _hasError.value = true
-                null
+
             }
         }
     }

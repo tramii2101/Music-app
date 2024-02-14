@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.musicapp.R
 import com.example.musicapp.base.BaseFragment
 import com.example.musicapp.databinding.FragmentLoginBinding
@@ -56,7 +57,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                 .replace(R.id.frame_authen, RegisterFragment()).commit()
         }
 
-
         binding.btnSignIn.setOnClickListener {
             username = binding.edtUsername.text.toString()
             password = binding.edtPassword.text.toString()
@@ -91,6 +91,10 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                 }
 
             })
+        }
+
+        binding.tvForgotPassword.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_forgotPasswordMethodFragment)
         }
     }
 }

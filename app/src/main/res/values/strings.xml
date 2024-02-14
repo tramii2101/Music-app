@@ -42,4 +42,5 @@
     <string name="confirm_password">Confirm password</string>
     <string name="new_password">New password</string>
     <string name="click_here">Click here</string>
+    <string name="send">Send</string>
 </resources>

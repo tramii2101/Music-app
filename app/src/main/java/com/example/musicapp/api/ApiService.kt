@@ -44,12 +44,13 @@ interface ApiService {
         @Body registerRequest: RegisterRequest
     ): Call<RegisterResponse<User>>
 
-    @POST
+    @POST(ApiConstants.FORGOT_PASSWORD)
     fun forgotPassword(@Body email: ForgotPasswordRequest): Call<ForgotPasswordResponse>
 
-    @POST
+    @POST(ApiConstants.VERIFY_OTP)
     fun enterOTP(@Body verifyOtp: VerifyOtpRequest): Call<VerifyOtpResponse>
 
+    @POST(ApiConstants.RESET_PASSWORD)
     fun resetPassword(@Body createNewPasswordRequest: CreateNewPasswordRequest): Call<BaseResponse>
 
     @GET(ApiConstants.GET_SONG_BY_ID)

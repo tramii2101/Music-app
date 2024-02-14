@@ -129,7 +129,7 @@
             android:layout_weight="1"
             android:drawableStart="@drawable/ic_lock"
             android:hint="@string/password"
-            android:inputType="textPassword"
+            android:inputType="text"
             android:textColor="@color/black"
             android:textColorHint="@color/grey"
             android:text="Abc123@"/>
